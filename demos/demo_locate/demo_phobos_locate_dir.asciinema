@@ -1,0 +1,421 @@
+# This demo was based on the work available in Phobos 1.92.
+# May not work for the following versions.
+
+{
+  "version": 1,
+  "width": 119,
+  "height": 28,
+  "duration": 147.105955,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "xterm-256color",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.538305,
+      "\u001b]0;lucasp@r6login:~/phobos/doc/demo\u0007"
+    ],
+    [
+      0.000782,
+      "\u001b[?1034h[lucasp@r6login demo]$ "
+    ],
+    [
+      1.00859,
+      "pcocc ssh -b 2336015 vm0"
+    ],
+    [
+      0.701244,
+      "\r\n"
+    ],
+    [
+      1.428089,
+      "Last login: Tue Jun 15 15:28:09 2021 from r6login.c-inti.ccc.ocre.cea.fr\r\r\n"
+    ],
+    [
+      0.029954,
+      "\u001b]0;lucasp@vm0:~\u0007\u001b[?1034h[lucasp@vm0 ~]$ "
+    ],
+    [
+      0.502247,
+      "s"
+    ],
+    [
+      0.088956,
+      "u"
+    ],
+    [
+      0.368512,
+      "d"
+    ],
+    [
+      0.202351,
+      "o"
+    ],
+    [
+      0.14702,
+      " "
+    ],
+    [
+      0.232419,
+      "s"
+    ],
+    [
+      0.126698,
+      "u"
+    ],
+    [
+      0.123366,
+      " "
+    ],
+    [
+      0.212335,
+      "-"
+    ],
+    [
+      0.358869,
+      "\r\n"
+    ],
+    [
+      0.01995,
+      "Last login: Tue Jun 15 15:27:35 UTC 2021 on pts/0\r\n"
+    ],
+    [
+      0.024548,
+      "\u001b]0;root@vm0:~\u0007\u001b[?1034h[root@vm0 ~]# "
+    ],
+    [
+      1.72088,
+      "\r\u001b[8@(reverse-i-search)`':\u001b[C"
+    ],
+    [
+      0.208684,
+      "\b\b\be': systemctl start phobosd\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+    ],
+    [
+      0.162395,
+      "\b\b\b\b\b\b\b\u001b[2Px': export SERVER1=\"vm1\"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+    ],
+    [
+      0.116865,
+      "\b\b\b\u001b[1@p\u001b[C\u001b[C\u001b[C"
+    ],
+    [
+      0.14433,
+      "\b\b\b\u001b[1@o\u001b[C\u001b[C\u001b[C"
+    ],
+    [
+      0.663416,
+      "\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C0=\"vm0\"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+    ],
+    [
+      0.408222,
+      "\r\u001b[12P[root@vm0 ~]#\u001b[C\r\n\u001b]0;root@vm0:~\u0007[root@vm0 ~]# "
+    ],
+    [
+      1.404959,
+      "\r\u001b[8@(reverse-i-search)`':\u001b[C"
+    ],
+    [
+      0.212212,
+      "\b\b\be': export SERVER0=\"vm0\"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+    ],
+    [
+      0.161036,
+      "\b\b\b\u001b[1@x\u001b[C\u001b[C\u001b[C"
+    ],
+    [
+      0.089489,
+      "\b\b\b\u001b[1@p\u001b[C\u001b[C\u001b[C"
+    ],
+    [
+      0.753545,
+      "\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C1=\"vm1\"\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b"
+    ],
+    [
+      0.453941,
+      "\r\u001b[11P[root@vm0 ~]#\u001b[C\r\n\u001b]0;root@vm0:~\u0007[root@vm0 ~]# "
+    ],
+    [
+      0.889546,
+      "."
+    ],
+    [
+      0.193922,
+      "/"
+    ],
+    [
+      0.105205,
+      "d"
+    ],
+    [
+      0.129905,
+      "e"
+    ],
+    [
+      0.082108,
+      "m"
+    ],
+    [
+      0.157743,
+      "o"
+    ],
+    [
+      0.086008,
+      "_phobos_locate.bash "
+    ],
+    [
+      0.46785,
+      "\r\n"
+    ],
+    [
+      0.00229,
+      "# 2 IO servers in parallel\r\n# both connected to the same phobos system\r\n# metadata are shared through a common db :\r\n# phobos DSS (Distributed State Service)\r\n"
+    ],
+    [
+      15.004839,
+      "\r\n# First phobos IO server : vm0\r\n"
+    ],
+    [
+      5.001318,
+      "\r\nssh vm0 sudo head -3 /etc/phobos.conf\r\n"
+    ],
+    [
+      0.167558,
+      "[dss]\r\n# DB connection string\r\nconnect_string = dbname=phobos host=vm0 user=phobos password=phobos\r\n"
+    ],
+    [
+      5.004452,
+      "\r\n# Second phobos IO server : vm1\r\n"
+    ],
+    [
+      5.001575,
+      "\r\nssh vm1 sudo head -3 /etc/phobos.conf\r\n"
+    ],
+    [
+      0.173797,
+      "[dss]\r\n# DB connection string\r\nconnect_string = dbname=phobos host=vm0 user=phobos password=phobos\r\n"
+    ],
+    [
+      5.004208,
+      "\r\n# add one dir on vm0\r\nssh vm0 mkdir /tmp/locate_dir_vm0\r\n"
+    ],
+    [
+      0.153612,
+      "ssh vm0 phobos dir add /tmp/locate_dir_vm0 --tags locate_demo\r\n"
+    ],
+    [
+      0.338157,
+      "2021-06-15 15:29:12,050 <INFO> Will add device 'dir:/tmp/locate_dir_vm0' to the database: model=(null) serial=vm0:/tmp/locate_dir_vm0 (unlocked)\r\n"
+    ],
+    [
+      0.00573,
+      "2021-06-15 15:29:12,055 <INFO> Added 1 dir(s) successfully\r\n"
+    ],
+    [
+      0.012354,
+      "ssh vm0 phobos dir format --fs posix --unlock /tmp/locate_dir_vm0\r\n"
+    ],
+    [
+      0.334098,
+      "2021-06-15 15:29:12,402 <INFO> Formatting media '/tmp/locate_dir_vm0'\r\n"
+    ],
+    [
+      0.020651,
+      "ssh vm0 phobos dir list\r\n"
+    ],
+    [
+      0.343694,
+      "2021-06-15 15:29:12,766 <ERROR> Failed to status media_/tmp/locate_dir_vm0: No locks available\r\n/tmp/locate_dir_vm0\r\n"
+    ],
+    [
+      10.017175,
+      "\r\n# add one dir on vm1\r\nssh vm1 mkdir /tmp/locate_dir_vm1\r\n"
+    ],
+    [
+      0.159699,
+      "ssh vm1 phobos dir add /tmp/locate_dir_vm1 --tags locate_demo\r\n"
+    ],
+    [
+      0.355363,
+      "2021-06-15 15:29:23,260 <INFO> Will add device 'dir:/tmp/locate_dir_vm1' to the database: model=(null) serial=vm1:/tmp/locate_dir_vm1 (unlocked)\r\n"
+    ],
+    [
+      0.007432,
+      "2021-06-15 15:29:23,267 <INFO> Added 1 dir(s) successfully\r\n"
+    ],
+    [
+      0.013279,
+      "ssh vm1 phobos dir format --fs posix --unlock /tmp/locate_dir_vm1\r\n"
+    ],
+    [
+      0.345387,
+      "2021-06-15 15:29:23,626 <INFO> Formatting media '/tmp/locate_dir_vm1'\r\n"
+    ],
+    [
+      0.02208,
+      "ssh vm1 phobos dir list\r\n"
+    ],
+    [
+      0.355332,
+      "2021-06-15 15:29:24,004 <ERROR> Failed to status media_/tmp/locate_dir_vm0: No locks available\r\n"
+    ],
+    [
+      0.000995,
+      "2021-06-15 15:29:24,005 <ERROR> Failed to status media_/tmp/locate_dir_vm1: No locks available\r\n"
+    ],
+    [
+      0.001176,
+      "/tmp/locate_dir_vm0\r\n/tmp/locate_dir_vm1\r\n"
+    ],
+    [
+      10.016478,
+      "\r\n# Locate the two new dirs from vm0\r\nssh vm0 phobos dir locate /tmp/locate_dir_vm0\r\n"
+    ],
+    [
+      0.339382,
+      "vm0\r\n2021-06-15 15:29:34,398 <ERROR> Failed to status media_/tmp/locate_dir_vm0: No locks available\r\n"
+    ],
+    [
+      0.012329,
+      "ssh vm0 phobos dir locate /tmp/locate_dir_vm1\r\n"
+    ],
+    [
+      0.340559,
+      "vm0\r\n2021-06-15 15:29:34,750 <ERROR> Failed to status media_/tmp/locate_dir_vm1: No locks available\r\n"
+    ],
+    [
+      10.01431,
+      "\r\n# Locate the two new dirs from vm1\r\nssh vm1 phobos dir locate /tmp/locate_dir_vm0\r\n"
+    ],
+    [
+      0.347755,
+      "2021-06-15 15:29:45,076 <ERROR> Failed to status media_/tmp/locate_dir_vm0: No locks available\r\nvm1\r\n"
+    ],
+    [
+      0.012771,
+      "ssh vm1 phobos dir locate /tmp/locate_dir_vm1\r\n"
+    ],
+    [
+      0.34617,
+      "vm1\r\n2021-06-15 15:29:45,434 <ERROR> Failed to status media_/tmp/locate_dir_vm1: No locks available\r\n"
+    ],
+    [
+      10.015276,
+      "\r\n# Create an object on each server on the two new dirs\r\nssh vm0 phobos put --family dir --tags locate_demo /etc/hosts locate_vm0\r\n"
+    ],
+    [
+      0.34957,
+      "2021-06-15 15:29:55,837 <INFO> PUT operation for oid:'locate_vm0' succeeded\r\n"
+    ],
+    [
+      0.012559,
+      "ssh vm1 phobos put --family dir --tags locate_demo /etc/hosts locate_vm1\r\n"
+    ],
+    [
+      0.396072,
+      "2021-06-15 15:29:56,208 <INFO> PUT operation for oid:'locate_vm1' succeeded\r\n"
+    ],
+    [
+      10.016742,
+      "\r\n# Locate both objects from vm0\r\nssh vm0 phobos locate locate_vm0\r\n"
+    ],
+    [
+      0.335826,
+      "vm0\r\n2021-06-15 15:30:06,598 <ERROR> Failed to status media_/tmp/locate_dir_vm0: No locks available\r\n"
+    ],
+    [
+      0.012973,
+      "ssh vm0 phobos locate locate_vm1\r\n"
+    ],
+    [
+      0.339737,
+      "vm0\r\n2021-06-15 15:30:06,947 <ERROR> Failed to status media_/tmp/locate_dir_vm1: No locks available\r\n"
+    ],
+    [
+      10.011182,
+      "\r\n# Locate both objects from vm1\r\nssh vm1 phobos locate locate_vm0\r\n"
+    ],
+    [
+      0.34402,
+      "vm1\r\n2021-06-15 15:30:17,267 <ERROR> Failed to status media_/tmp/locate_dir_vm0: No locks available\r\n"
+    ],
+    [
+      0.012465,
+      "ssh vm1 phobos locate locate_vm1\r\n"
+    ],
+    [
+      0.344159,
+      "vm1\r\n2021-06-15 15:30:17,624 <ERROR> Failed to status media_/tmp/locate_dir_vm1: No locks available\r\n"
+    ],
+    [
+      10.015873,
+      "\r\n\u001b]0;root@vm0:~\u0007[root@vm0 ~]# "
+    ],
+    [
+      12.79879,
+      "logout\r\n"
+    ],
+    [
+      0.003777,
+      "\u001b]0;lucasp@vm0:~\u0007[lucasp@vm0 ~]$ "
+    ],
+    [
+      0.610573,
+      "sudo su -"
+    ],
+    [
+      0.466553,
+      "\b\b\b\bcp demo_phobos_locate.bash /root/"
+    ],
+    [
+      1.583821,
+      "\r\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[Csu -\u001b[K"
+    ],
+    [
+      0.341606,
+      "\b\b\b\b\b\b\b\b\b\u001b[K"
+    ],
+    [
+      0.189542,
+      "\u0007"
+    ],
+    [
+      1.165548,
+      "logout\r\nConnection to inti2218 closed.\r"
+    ],
+    [
+      0.000954,
+      "\r\n"
+    ],
+    [
+      0.042886,
+      "\u001b]0;lucasp@r6login:~/phobos/doc/demo\u0007"
+    ],
+    [
+      4.9e-05,
+      "[lucasp@r6login demo]$ "
+    ],
+    [
+      1.466057,
+      "pcocc ssh -b 2336015 vm0"
+    ],
+    [
+      0.695669,
+      "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b./demo_phobos_locate.bash "
+    ],
+    [
+      1.136566,
+      "\r\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[2Ppcocc ssh -b 2336015 vm0"
+    ],
+    [
+      0.177912,
+      "\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\b\u001b[K"
+    ],
+    [
+      0.216451,
+      "\u0007"
+    ]
+  ]
+}

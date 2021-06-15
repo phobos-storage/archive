@@ -1,0 +1,305 @@
+# This demo was based on the work available in Phobos 1.92.
+# May not work for the following versions.
+
+{
+  "version": 1,
+  "width": 119,
+  "height": 28,
+  "duration": 124.251617,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "xterm-256color",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.171533,
+      "(pcocc/2336817) "
+    ],
+    [
+      0.000225,
+      "\u001b[?1034h"
+    ],
+    [
+      8.5e-05,
+      "[lucasp@r6login demo]$ "
+    ],
+    [
+      0.51174,
+      "pcocc ssh vm0"
+    ],
+    [
+      0.6552,
+      "\r\n"
+    ],
+    [
+      1.287278,
+      "Last login: Wed Jun 16 14:56:49 2021 from r6login.c-inti.ccc.ocre.cea.fr\r\r\n"
+    ],
+    [
+      0.030393,
+      "\u001b]0;lucasp@vm0:~\u0007\u001b[?1034h[lucasp@vm0 ~]$ "
+    ],
+    [
+      1.610494,
+      "sudo su -"
+    ],
+    [
+      0.564815,
+      "\r\n"
+    ],
+    [
+      0.01991,
+      "Last login: Wed Jun 16 14:57:16 UTC 2021 on pts/0\r\n"
+    ],
+    [
+      0.025113,
+      "\u001b]0;root@vm0:~\u0007\u001b[?1034h[root@vm0 ~]# "
+    ],
+    [
+      1.605191,
+      "."
+    ],
+    [
+      0.190824,
+      "/"
+    ],
+    [
+      0.133416,
+      "d"
+    ],
+    [
+      0.135504,
+      "e"
+    ],
+    [
+      0.090008,
+      "m"
+    ],
+    [
+      0.139003,
+      "o_phobos_locate_dir_adding_lock.bash "
+    ],
+    [
+      0.432271,
+      "\r\n"
+    ],
+    [
+      0.002221,
+      "# 2 IO servers in parallel\r\n# both connected to the same phobos system\r\n# metadata are shared through a common db :\r\n# phobos DSS (Distributed State Service)\r\n"
+    ],
+    [
+      15.004797,
+      "\r\n# First phobos IO server : vm0\r\n"
+    ],
+    [
+      5.00147,
+      "\r\nssh vm0 sudo head -3 /etc/phobos.conf\r\n"
+    ],
+    [
+      0.165237,
+      "[dss]\r\n# DB connection string\r\nconnect_string = dbname=phobos host=vm0 user=phobos password=phobos\r\n"
+    ],
+    [
+      5.003583,
+      "\r\n# Second phobos IO server : vm1\r\n"
+    ],
+    [
+      5.001546,
+      "\r\nssh vm1 sudo head -3 /etc/phobos.conf\r\n"
+    ],
+    [
+      0.168927,
+      "[dss]\r\n# DB connection string\r\nconnect_string = dbname=phobos host=vm0 user=phobos password=phobos\r\n"
+    ],
+    [
+      5.004173,
+      "\r\n# add one dir on vm0\r\nssh vm0 mkdir /tmp/locate_dir_vm0\r\n"
+    ],
+    [
+      0.152648,
+      "ssh vm0 phobos dir add /tmp/locate_dir_vm0 --tags locate_demo\r\n"
+    ],
+    [
+      0.336785,
+      "2021-06-16 14:58:45,749 <INFO> Will add device 'dir:/tmp/locate_dir_vm0' to the database: model=(null) serial=vm0:/tmp/locate_dir_vm0 (unlocked)\r\n"
+    ],
+    [
+      0.005919,
+      "2021-06-16 14:58:45,755 <INFO> Added 1 dir(s) successfully\r\n"
+    ],
+    [
+      0.01385,
+      "ssh vm0 phobos dir format --fs posix --unlock /tmp/locate_dir_vm0\r\n"
+    ],
+    [
+      0.332385,
+      "2021-06-16 14:58:46,101 <INFO> Formatting media '/tmp/locate_dir_vm0'\r\n"
+    ],
+    [
+      0.180602,
+      "2021-06-16 14:58:46.282571000 <ERROR> Failed to status media_/tmp/locate_dir_vm0: No locks available (37)\r\n"
+    ],
+    [
+      0.002729,
+      "ssh vm0 phobos dir list\r\n"
+    ],
+    [
+      0.342552,
+      "/tmp/locate_dir_vm0\r\n"
+    ],
+    [
+      10.016457,
+      "\r\n# add one dir on vm1\r\nssh vm1 mkdir /tmp/locate_dir_vm1\r\n"
+    ],
+    [
+      0.157786,
+      "ssh vm1 phobos dir add /tmp/locate_dir_vm1 --tags locate_demo\r\n"
+    ],
+    [
+      0.345947,
+      "2021-06-16 14:58:57,073 <INFO> Will add device 'dir:/tmp/locate_dir_vm1' to the database: model=(null) serial=vm1:/tmp/locate_dir_vm1 (unlocked)\r\n"
+    ],
+    [
+      0.007283,
+      "2021-06-16 14:58:57,080 <INFO> Added 1 dir(s) successfully\r\n"
+    ],
+    [
+      0.012871,
+      "ssh vm1 phobos dir format --fs posix --unlock /tmp/locate_dir_vm1\r\n"
+    ],
+    [
+      0.345192,
+      "2021-06-16 14:58:57,438 <INFO> Formatting media '/tmp/locate_dir_vm1'\r\n"
+    ],
+    [
+      0.187045,
+      "2021-06-16 14:58:57.700224000 <ERROR> Failed to status media_/tmp/locate_dir_vm1: No locks available (37)\r\n"
+    ],
+    [
+      0.002201,
+      "ssh vm1 phobos dir list\r\n"
+    ],
+    [
+      0.355656,
+      "/tmp/locate_dir_vm0\r\n/tmp/locate_dir_vm1\r\n"
+    ],
+    [
+      10.016798,
+      "\r\n# Locate the two new dirs from vm0\r\nssh vm0 phobos dir locate /tmp/locate_dir_vm0\r\n"
+    ],
+    [
+      0.335125,
+      "vm0\r\n"
+    ],
+    [
+      0.012067,
+      "ssh vm0 phobos dir locate /tmp/locate_dir_vm1\r\n"
+    ],
+    [
+      0.335383,
+      "vm1\r\n"
+    ],
+    [
+      10.015527,
+      "\r\n# Locate the two new dirs from vm1\r\nssh vm1 phobos dir locate /tmp/locate_dir_vm0\r\n"
+    ],
+    [
+      0.347073,
+      "vm0\r\n"
+    ],
+    [
+      0.012037,
+      "ssh vm1 phobos dir locate /tmp/locate_dir_vm1\r\n"
+    ],
+    [
+      0.343912,
+      "vm1\r\n"
+    ],
+    [
+      10.347006,
+      "\r\n# Create an object on each server on the two new dirs\r\nssh vm0 phobos put --family dir --tags locate_demo /etc/hosts locate_vm0\r\n"
+    ],
+    [
+      0.344435,
+      "2021-06-16 14:59:30,165 <INFO> PUT operation for oid:'locate_vm0' succeeded\r\n"
+    ],
+    [
+      0.176764,
+      "2021-06-16 14:59:30.343033000 <ERROR> Failed to status media_/tmp/locate_dir_vm0: No locks available (37)\r\n"
+    ],
+    [
+      0.002976,
+      "ssh vm1 phobos put --family dir --tags locate_demo /etc/hosts locate_vm1\r\n"
+    ],
+    [
+      0.370361,
+      "2021-06-16 14:59:30,641 <INFO> PUT operation for oid:'locate_vm1' succeeded\r\n"
+    ],
+    [
+      0.175396,
+      "2021-06-16 14:59:30.891754000 <ERROR> Failed to status media_/tmp/locate_dir_vm1: No locks available (37)\r\n"
+    ],
+    [
+      10.005534,
+      "\r\n# Locate both objects from vm0\r\nssh vm0 phobos locate locate_vm0\r\n"
+    ],
+    [
+      0.333492,
+      "vm0\r\n"
+    ],
+    [
+      0.011388,
+      "ssh vm0 phobos locate locate_vm1\r\n"
+    ],
+    [
+      0.332016,
+      "vm1\r\n"
+    ],
+    [
+      10.015315,
+      "\r\n# Locate both objects from vm1\r\nssh vm1 phobos locate locate_vm0\r\n"
+    ],
+    [
+      0.342799,
+      "vm0\r\n"
+    ],
+    [
+      0.011785,
+      "ssh vm1 phobos locate locate_vm1\r\n"
+    ],
+    [
+      0.340804,
+      "vm1\r\n"
+    ],
+    [
+      10.015815,
+      "\r\n"
+    ],
+    [
+      0.332061,
+      "\u001b]0;root@vm0:~\u0007[root@vm0 ~]# "
+    ],
+    [
+      3.211307,
+      "logout\r\n"
+    ],
+    [
+      0.00274,
+      "\u001b]0;lucasp@vm0:~\u0007[lucasp@vm0 ~]$ "
+    ],
+    [
+      0.664084,
+      "logout\r\nConnection to inti2218 closed.\r\r\n"
+    ],
+    [
+      0.044058,
+      "(pcocc/2336817) "
+    ],
+    [
+      3.7e-05,
+      "[lucasp@r6login demo]$ "
+    ]
+  ]
+}

@@ -1,0 +1,329 @@
+# This demo was based on the work available in Phobos 1.92.
+# May not work for the following versions.
+
+{
+  "version": 1,
+  "width": 119,
+  "height": 28,
+  "duration": 134.077045,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "xterm-256color",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.186089,
+      "\u001b]0;lucasp@r6login:~/phobos/doc/demo\u0007"
+    ],
+    [
+      0.000855,
+      "\u001b[?1034h[lucasp@r6login demo]$ "
+    ],
+    [
+      0.472607,
+      "pcocc ssh -b 2336015 vm0"
+    ],
+    [
+      0.825477,
+      "\r\n"
+    ],
+    [
+      1.375628,
+      "Last login: Tue Jun 15 16:22:51 2021 from r6login.c-inti.ccc.ocre.cea.fr\r\r\n"
+    ],
+    [
+      0.029844,
+      "\u001b]0;lucasp@vm0:~\u0007\u001b[?1034h[lucasp@vm0 ~]$ "
+    ],
+    [
+      0.944049,
+      "s"
+    ],
+    [
+      0.153278,
+      "u"
+    ],
+    [
+      0.119777,
+      "d"
+    ],
+    [
+      0.114049,
+      "o"
+    ],
+    [
+      0.189909,
+      " "
+    ],
+    [
+      0.157007,
+      "s"
+    ],
+    [
+      0.09751,
+      "u"
+    ],
+    [
+      0.131365,
+      " "
+    ],
+    [
+      0.544099,
+      "-"
+    ],
+    [
+      0.129524,
+      "\r\n"
+    ],
+    [
+      0.021515,
+      "Last login: Tue Jun 15 16:18:25 UTC 2021 on pts/0\r\n"
+    ],
+    [
+      0.024298,
+      "\u001b]0;root@vm0:~\u0007\u001b[?1034h[root@vm0 ~]# "
+    ],
+    [
+      0.762904,
+      "."
+    ],
+    [
+      0.198622,
+      "/"
+    ],
+    [
+      0.116966,
+      "d"
+    ],
+    [
+      0.142566,
+      "e"
+    ],
+    [
+      0.111892,
+      "m"
+    ],
+    [
+      0.178926,
+      "o"
+    ],
+    [
+      0.109155,
+      "\u0007_phobos_locate"
+    ],
+    [
+      1.161489,
+      "_"
+    ],
+    [
+      0.20187,
+      "t"
+    ],
+    [
+      0.638646,
+      "a"
+    ],
+    [
+      0.194596,
+      "pe.bash "
+    ],
+    [
+      0.71251,
+      "\r\n"
+    ],
+    [
+      0.002419,
+      "# 2 IO servers in parallel\r\n# both connected to the same phobos system\r\n# metadata are shared through a common db :\r\n# phobos DSS (Distributed State Service)\r\n"
+    ],
+    [
+      15.004612,
+      "\r\n# First phobos IO server : vm0\r\n"
+    ],
+    [
+      5.001624,
+      "\r\nssh vm0 sudo head -3 /etc/phobos.conf\r\n"
+    ],
+    [
+      0.167469,
+      "[dss]\r\n# DB connection string\r\nconnect_string = dbname=phobos host=vm0 user=phobos password=phobos\r\n"
+    ],
+    [
+      5.00404,
+      "\r\n# Second phobos IO server : vm1\r\n"
+    ],
+    [
+      5.001449,
+      "\r\nssh vm1 sudo head -3 /etc/phobos.conf\r\n"
+    ],
+    [
+      0.172963,
+      "[dss]\r\n# DB connection string\r\nconnect_string = dbname=phobos host=vm0 user=phobos password=phobos\r\n"
+    ],
+    [
+      5.004218,
+      "\r\n# add one drive on vm0\r\nssh vm0 phobos drive add /dev/st0 --unlock\r\n"
+    ],
+    [
+      0.338855,
+      "2021-06-15 16:26:03,825 <INFO> Will add device 'tape:/dev/st0' to the database: model=ULT3580-TD5 serial=1626616275 (unlocked)\r\n"
+    ],
+    [
+      0.005845,
+      "2021-06-15 16:26:03,831 <INFO> Added 1 device(s) successfully\r\n"
+    ],
+    [
+      0.012535,
+      "# add one tape on vm0\r\nssh vm0 phobos tape add --tags locate_demo --type lto5 P00000L5\r\n"
+    ],
+    [
+      0.333727,
+      "2021-06-15 16:26:04,177 <INFO> Added 1 media successfully\r\n"
+    ],
+    [
+      0.012266,
+      "# format one tape on vm0\r\nssh vm0 phobos tape format P00000L5 --unlock\r\n"
+    ],
+    [
+      0.336439,
+      "2021-06-15 16:26:04,526 <INFO> Formatting media 'P00000L5'\r\n"
+    ],
+    [
+      10.57671,
+      "\r\n# add one drive on vm1\r\nssh vm1 phobos drive add /dev/st1 --unlock\r\n"
+    ],
+    [
+      0.35188,
+      "2021-06-15 16:26:15,416 <INFO> Will add device 'tape:/dev/st1' to the database: model=ULT3580-TD5 serial=0276680127 (unlocked)\r\n"
+    ],
+    [
+      1.008506,
+      "2021-06-15 16:26:16,424 <INFO> Added 1 device(s) successfully\r\n"
+    ],
+    [
+      0.01228,
+      "# add one tape on vm1\r\nssh vm1 phobos tape add --tags locate_demo --type lto5 P00001L5\r\n"
+    ],
+    [
+      0.342602,
+      "2021-06-15 16:26:16,778 <INFO> Added 1 media successfully\r\n"
+    ],
+    [
+      0.011476,
+      "# format one tape on vm1\r\nssh vm1 phobos tape format P00001L5 --unlock\r\n"
+    ],
+    [
+      0.346241,
+      "2021-06-15 16:26:17,137 <INFO> Formatting media 'P00001L5'\r\n"
+    ],
+    [
+      10.260108,
+      "\r\n# Locate the two new tapes from vm0\r\nssh vm0 phobos tape locate P00000L5\r\n"
+    ],
+    [
+      0.342751,
+      "2021-06-15 16:26:27,778 <ERROR> Failed to status media_P00000L5: No locks available\r\nvm0\r\n"
+    ],
+    [
+      0.012686,
+      "ssh vm0 phobos tape locate P00001L5\r\n"
+    ],
+    [
+      0.34128,
+      "2021-06-15 16:26:28,132 <ERROR> Failed to status media_P00001L5: No locks available\r\nvm0\r\n"
+    ],
+    [
+      10.015913,
+      "\r\n# Locate the two new tapes from vm1\r\nssh vm1 phobos tape locate P00000L5\r\n"
+    ],
+    [
+      0.349752,
+      "vm1\r\n2021-06-15 16:26:38,459 <ERROR> Failed to status media_P00000L5: No locks available\r\n"
+    ],
+    [
+      0.013581,
+      "ssh vm1 phobos tape locate P00001L5\r\n"
+    ],
+    [
+      0.348703,
+      "2021-06-15 16:26:38,820 <ERROR> Failed to status media_P00001L5: No locks available\r\n"
+    ],
+    [
+      0.000122,
+      "vm1\r\n"
+    ],
+    [
+      10.016634,
+      "\r\n# Create an object on each server on the two new tapes\r\nssh vm0 phobos put --family tape --tags locate_demo /etc/hosts locate_vm0\r\n"
+    ],
+    [
+      0.47547,
+      "2021-06-15 16:26:49,351 <INFO> PUT operation for oid:'locate_vm0' succeeded\r\n"
+    ],
+    [
+      0.014334,
+      "ssh vm1 phobos put --family tape --tags locate_demo /etc/hosts locate_vm1\r\n"
+    ],
+    [
+      0.4826,
+      "2021-06-15 16:26:49,809 <INFO> PUT operation for oid:'locate_vm1' succeeded\r\n"
+    ],
+    [
+      10.0165,
+      "\r\n# Locate both objects from vm0\r\nssh vm0 phobos locate locate_vm0\r\n"
+    ],
+    [
+      0.339671,
+      "vm0\r\n2021-06-15 16:27:00,203 <ERROR> Failed to status media_P00000L5: No locks available\r\n"
+    ],
+    [
+      0.012231,
+      "ssh vm0 phobos locate locate_vm1\r\n"
+    ],
+    [
+      0.338866,
+      "vm0\r\n2021-06-15 16:27:00,553 <ERROR> Failed to status media_P00001L5: No locks available\r\n"
+    ],
+    [
+      10.01401,
+      "\r\n# Locate both objects from vm1\r\nssh vm1 phobos locate locate_vm0\r\n"
+    ],
+    [
+      0.345251,
+      "vm1\r\n2021-06-15 16:27:10,875 <ERROR> Failed to status media_P00000L5: No locks available\r\n"
+    ],
+    [
+      0.011848,
+      "ssh vm1 phobos locate locate_vm1\r\n"
+    ],
+    [
+      0.344414,
+      "vm1\r\n2021-06-15 16:27:11,231 <ERROR> Failed to status media_P00001L5: No locks available\r\n"
+    ],
+    [
+      10.016109,
+      "\r\n"
+    ],
+    [
+      0.000177,
+      "\u001b]0;root@vm0:~\u0007[root@vm0 ~]# "
+    ],
+    [
+      9.68719,
+      "logout\r\n"
+    ],
+    [
+      0.00339,
+      "\u001b]0;lucasp@vm0:~\u0007[lucasp@vm0 ~]$ "
+    ],
+    [
+      1.13676,
+      "logout\r\nConnection to inti2218 closed.\r\r\n"
+    ],
+    [
+      0.041265,
+      "\u001b]0;lucasp@r6login:~/phobos/doc/demo\u0007[lucasp@r6login demo]$ "
+    ]
+  ]
+}
