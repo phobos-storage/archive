@@ -1,0 +1,97 @@
+# This demo was based on the work available in Phobos 1.91.2.
+# May not work for the following versions.
+
+{
+  "version": 1,
+  "width": 211,
+  "height": 62,
+  "duration": 110.992366,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "xterm-256color",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.002095,
+      "# Demo -- 'phobos extent list'\r\n"
+    ],
+    [
+      5.001518,
+      "#                                                                               \r\n# The previous version of 'phobos extent list' considered that each provided    \r\n# argument was a POSIX pattern, which leads to bad performances if the extent   \r\n# table has a lot of extent, due to pattern comparison.                       \r\n"
+    ],
+    [
+      10.001457,
+      "#                                                                               \r\n# The new version will still offer this pattern comparison, but as an optional  \r\n# behavior using the '--pattern' option.                                        \r\n"
+    ],
+    [
+      5.001565,
+      "#                                                                               \r\n# The default behavior of the command is now to make exact comparisons.         \r\n"
+    ],
+    [
+      5.001788,
+      "#                                                                               \r\n#                                                                               \r\n# Considering a phobos system with a directory and objects already pushed:       \r\n$ phobos object list --output all\r\n"
+    ],
+    [
+      0.198145,
+      "| oid       | user_md   | uuid                                 |   version |\r\n|-----------|-----------|--------------------------------------|-----------|\r\n| dummy     | {}        | 9d2f6a99-9f50-409e-8e62-9122ac6159b0 |         1 |\r\n| dummy2    | {}        | 602473e0-5a2a-443c-8de5-ddba92c92e6e |         1 |\r\n| yummy     | {}        | fe20d9a7-4f0d-4662-8797-65f2c1d89f13 |         1 |\r\n| blob      | {}        | 3aba4bd2-719c-4ea5-941d-f084cfca6457 |         1 |\r\n| blobiblob | {}        | b2206b41-b6cc-4c46-b23a-b8cc2e6c5757 |         1 |\r\n| blobummy  | {}        | ace1c3b1-39f2-4b28-9706-7870d31e5904 |         1 |\r\n"
+    ],
+    [
+      10.007386,
+      "#                                                                               \r\n#                                                                               \r\n# Here are the extents associated with each object:       \r\n$ phobos extent list --output all\r\n"
+    ],
+    [
+      0.194623,
+      "| address                                                       |   ext_count | family   | layout   | media_name             | oid       | size    |\r\n|---------------------------------------------------------------|-------------|----------|----------|------------------------|-----------|---------|\r\n| ['c2/2e/dummy.1.s0.9d2f6a99-9f50-409e-8e62-9122ac6159b0']     |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | dummy     | [97158] |\r\n| ['e7/d6/dummy2.1.s0.602473e0-5a2a-443c-8de5-ddba92c92e6e']    |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | dummy2    | [97158] |\r\n| ['bf/e9/yummy.1.s0.fe20d9a7-4f0d-4662-8797-65f2c1d89f13']     |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | yummy     | [97158] |\r\n| ['6d/5b/blob.1.s0.3aba4bd2-719c-4ea5-941d-f084cfca6457']      |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | blob      | [97158] |\r\n| ['a2/8b/blobiblob.1.s0.b2206b41-b6cc-4c46-b23a-b8cc2e6c5757'] |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK']"
+    ],
+    [
+      3.3e-05,
+      " | blobiblob | [97158] |\r\n| ['af/0d/blobummy.1.s0.ace1c3b1-39f2-4b28-9706-7870d31e5904']  |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | blobummy  | [97158] |\r\n"
+    ],
+    [
+      10.006412,
+      "#                                                                               \r\n#                                                                               \r\n# There are the results of the different commands when targetting 'dummy':       \r\n$ phobos extent list --output all dummy \r\n"
+    ],
+    [
+      0.193585,
+      "| address                                                   |   ext_count | family   | layout   | media_name             | oid   | size    |\r\n|-----------------------------------------------------------|-------------|----------|----------|------------------------|-------|---------|\r\n| ['c2/2e/dummy.1.s0.9d2f6a99-9f50-409e-8e62-9122ac6159b0'] |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | dummy | [97158] |\r\n"
+    ],
+    [
+      10.006365,
+      "#                                                                               \r\n#                                                                               \r\n$ phobos extent list --output all --pattern dummy\r\n"
+    ],
+    [
+      0.194648,
+      "| address                                                    |   ext_count | family   | layout   | media_name             | oid    | size    |\r\n|------------------------------------------------------------|-------------|----------|----------|------------------------|--------|---------|\r\n| ['c2/2e/dummy.1.s0.9d2f6a99-9f50-409e-8e62-9122ac6159b0']  |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | dummy  | [97158] |\r\n| ['e7/d6/dummy2.1.s0.602473e0-5a2a-443c-8de5-ddba92c92e6e'] |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | dummy2 | [97158] |\r\n"
+    ],
+    [
+      10.007373,
+      "#                                                                               \r\n#                                                                               \r\n# We can also have multiple oids/patterns:                                      \r\n$ phobos extent list --output all --pattern blob ummy\r\n"
+    ],
+    [
+      0.1946,
+      "| address                                                       |   ext_count | family   | layout   | media_name             | oid       | size    |\r\n|---------------------------------------------------------------|-------------|----------|----------|------------------------|-----------|---------|\r\n| ['c2/2e/dummy.1.s0.9d2f6a99-9f50-409e-8e62-9122ac6159b0']     |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | dummy     | [97158] |\r\n| ['e7/d6/dummy2.1.s0.602473e0-5a2a-443c-8de5-ddba92c92e6e']    |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | dummy2    | [97158] |\r\n| ['bf/e9/yummy.1.s0.fe20d9a7-4f0d-4662-8797-65f2c1d89f13']     |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | yummy     | [97158] |\r\n| ['6d/5b/blob.1.s0.3aba4bd2-719c-4ea5-941d-f084cfca6457']      |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | blob      | [97158] |\r\n| ['a2/8b/blobiblob.1.s0.b2206b41-b6cc-4c46-b23a-b8cc2e6c5757'] |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK']"
+    ],
+    [
+      4.3e-05,
+      " | blobiblob | [97158] |\r\n| ['af/0d/blobummy.1.s0.ace1c3b1-39f2-4b28-9706-7870d31e5904']  |           1 | ['dir']  | simple   | ['/tmp/test.pho.qGfK'] | blobummy  | [97158] |\r\n"
+    ],
+    [
+      15.006627,
+      "#                                                                               \r\n#                                                                               \r\n# Last time, we also mentionned that we could search multiple              \r\n# oids/patterns using object list, but it wasn't implemented yet.               \r\n# It is now working and usable :)                                               \r\n"
+    ],
+    [
+      7.001624,
+      "$ phobos object list --output all --pattern blob ummy\r\n"
+    ],
+    [
+      0.194721,
+      "| oid       | user_md   | uuid                                 |   version |\r\n|-----------|-----------|--------------------------------------|-----------|\r\n| dummy     | {}        | 9d2f6a99-9f50-409e-8e62-9122ac6159b0 |         1 |\r\n| dummy2    | {}        | 602473e0-5a2a-443c-8de5-ddba92c92e6e |         1 |\r\n| yummy     | {}        | fe20d9a7-4f0d-4662-8797-65f2c1d89f13 |         1 |\r\n| blob      | {}        | 3aba4bd2-719c-4ea5-941d-f084cfca6457 |         1 |\r\n| blobiblob | {}        | b2206b41-b6cc-4c46-b23a-b8cc2e6c5757 |         1 |\r\n| blobummy  | {}        | ace1c3b1-39f2-4b28-9706-7870d31e5904 |         1 |\r\n"
+    ],
+    [
+      10.006532,
+      "#                                                                               \r\n# End of demonstration                                                          \r\n\u001b]0;root@vm0:/home/valeriy\u0007[root@vm0 valeriy]# "
+    ]
+  ]
+}
