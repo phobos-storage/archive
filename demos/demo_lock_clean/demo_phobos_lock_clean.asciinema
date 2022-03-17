@@ -1,0 +1,413 @@
+# This demo was based on the work available in Phobos 1.94.
+# May not work for the following versions.
+
+{
+  "version": 1,
+  "width": 211,
+  "height": 57,
+  "duration": 62.531686,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "xterm-256color",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.029373,
+      "\u001b]0;keyewaa@vm0:~\u0007\u001b[?1034h[keyewaa@vm0 ~]$ "
+    ],
+    [
+      1.184123,
+      "./demo_lock_clean.sh"
+    ],
+    [
+      0.844369,
+      "\r\n"
+    ],
+    [
+      0.042667,
+      "# Use phobos lock clean command when phobos deamon is on\r\n# Turn on phobos daemon\r\nsudo systemctl start phobosd\r\n"
+    ],
+    [
+      0.02939,
+      "\r\n# Use phobos lock clean command without --force attribute when phobosd is on\r\nsudo phobos lock clean\r\n"
+    ],
+    [
+      0.204475,
+      "2022-03-18 15:05:07,578 <ERROR> Deamon is online. Cannot release locks.: Operation not permitted\r\n2022-03-18 15:05:07,578 <ERROR> Clean command failed\r\n"
+    ],
+    [
+      3.006053,
+      "\r\n########################################################################\r\n# Without --global attribute, only local locks (localhost is vm0) are targeted\r\n# Delete every local locks with --force attribute when deamon is on\r\n"
+    ],
+    [
+      0.010636,
+      "INSERT 0 4\r\n"
+    ],
+    [
+      0.000407,
+      "\r\n# Lock database before call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.008878,
+      "     type     | id | hostname | owner |         timestamp          \r\n--------------+----+----------+-------+----------------------------\r\n media        | 1  | host1    |     1 | 2022-03-18 15:05:10.602335\r\n media        | 2  | host2    |     3 | 2022-03-18 15:05:10.602335\r\n media_update | 3  | vm0      |     4 | 2022-03-18 15:05:10.602335\r\n device       | 3  | vm0      |     1 | 2022-03-18 15:05:10.602335\r\n(4 rows)\r\n\r\n"
+    ],
+    [
+      0.000491,
+      "\r\nsudo phobos lock clean --force\r\n"
+    ],
+    [
+      0.205569,
+      "2022-03-18 15:05:10,811 <INFO> 2 lock(s) cleaned.\r\n2022-03-18 15:05:10,811 <INFO> Clean command executed successfully\r\n"
+    ],
+    [
+      0.005819,
+      "\r\n# Lock database after call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.00917,
+      " type  | id | hostname | owner |         timestamp          \r\n-------+----+----------+-------+----------------------------\r\n media | 1  | host1    |     1 | 2022-03-18 15:05:10.602335\r\n media | 2  | host2    |     3 | 2022-03-18 15:05:10.602335\r\n(2 rows)\r\n\r\n"
+    ],
+    [
+      3.05162,
+      "\r\n########################################################################\r\n# Delete every lock with --global --force attributes\r\n"
+    ],
+    [
+      0.010955,
+      "INSERT 0 4\r\n"
+    ],
+    [
+      0.000401,
+      "\r\n# Lock database before call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.008829,
+      "     type     | id | hostname | owner |         timestamp          \r\n--------------+----+----------+-------+----------------------------\r\n media        | 1  | host1    |     1 | 2022-03-18 15:05:13.895323\r\n media        | 2  | host2    |     3 | 2022-03-18 15:05:13.895323\r\n media_update | 3  | vm0      |     4 | 2022-03-18 15:05:13.895323\r\n device       | 3  | vm0      |     1 | 2022-03-18 15:05:13.895323\r\n(4 rows)\r\n\r\n"
+    ],
+    [
+      0.000437,
+      "\r\nsudo phobos lock clean --global --force\r\n"
+    ],
+    [
+      0.207701,
+      "2022-03-18 15:05:14,106 <INFO> Clean command executed successfully\r\n"
+    ],
+    [
+      0.004931,
+      "\r\n# Lock database after call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.009381,
+      " type | id | hostname | owner | timestamp \r\n------+----+----------+-------+-----------\r\n(0 rows)\r\n\r\n"
+    ],
+    [
+      3.038846,
+      "\r\n########################################################################\r\n# Try to use --global parameter without --force attribute\r\nsudo phobos lock clean --global\r\n"
+    ],
+    [
+      0.202842,
+      "2022-03-18 15:05:17,362 <ERROR> Force mode is necessary for global mode.: Operation not permitted\r\n2022-03-18 15:05:17,362 <ERROR> Clean command failed\r\n"
+    ],
+    [
+      3.006346,
+      "\r\n# Turn off phobos daemon\r\nsudo systemctl stop phobosd\r\n"
+    ],
+    [
+      6.134973,
+      "\r\n########################################################################\r\n########################################################################\r\n# Use the command with the type parameter: -t or --type\r\n# Supported types are 'device', 'media_update', 'media' and 'object'\r\n"
+    ],
+    [
+      6.002668,
+      "\r\n# Delete every local device lock\r\n"
+    ],
+    [
+      0.013145,
+      "INSERT 0 3\r\n"
+    ],
+    [
+      0.000439,
+      "\r\n# Lock database before call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.008781,
+      "  type  | id | hostname | owner |         timestamp          \r\n--------+----+----------+-------+----------------------------\r\n media  | 3  | vm0      |     2 | 2022-03-18 15:05:32.525813\r\n device | 3  | vm0      |     1 | 2022-03-18 15:05:32.525813\r\n device | 4  | vm0      |     1 | 2022-03-18 15:05:32.525813\r\n(3 rows)\r\n\r\n"
+    ],
+    [
+      0.00035,
+      "\r\nsudo phobos lock clean -t device\r\n"
+    ],
+    [
+      0.193273,
+      "2022-03-18 15:05:32,730 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n"
+    ],
+    [
+      0.01304,
+      "2022-03-18 15:05:32,734 <INFO> 2 lock(s) cleaned.\r\n2022-03-18 15:05:32,734 <INFO> Clean command executed successfully\r\n"
+    ],
+    [
+      0.0042,
+      "\r\n# Lock database after call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.009038,
+      " type  | id | hostname | owner |         timestamp          \r\n-------+----+----------+-------+----------------------------\r\n media | 3  | vm0      |     2 | 2022-03-18 15:05:32.525813\r\n(1 row)\r\n\r\n"
+    ],
+    [
+      3.050744,
+      "\r\n########################################################################\r\n# Delete every object lock\r\n"
+    ],
+    [
+      0.010825,
+      "INSERT 0 5\r\n"
+    ],
+    [
+      0.000414,
+      "\r\n# Lock database before call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.008889,
+      "  type  | id | hostname | owner |         timestamp          \r\n--------+----+----------+-------+----------------------------\r\n media  | 1  | host1    |     1 | 2022-03-18 15:05:35.816488\r\n object | 1  | host1    |     3 | 2022-03-18 15:05:35.816488\r\n object | 2  | host2    |     2 | 2022-03-18 15:05:35.816488\r\n object | 3  | vm0      |     3 | 2022-03-18 15:05:35.816488\r\n media  | 3  | vm0      |     2 | 2022-03-18 15:05:35.816488\r\n(5 rows)\r\n\r\n\r\nsudo phobos lock clean -t object --global --force\r\n"
+    ],
+    [
+      0.194561,
+      "2022-03-18 15:05:36,022 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n"
+    ],
+    [
+      0.012303,
+      "2022-03-18 15:05:36,025 <INFO> 3 lock(s) cleaned.\r\n2022-03-18 15:05:36,025 <INFO> Clean command executed successfully\r\n"
+    ],
+    [
+      0.004108,
+      "\r\n# Lock database after call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.00926,
+      " type  | id | hostname | owner |         timestamp          \r\n-------+----+----------+-------+----------------------------\r\n media | 1  | host1    |     1 | 2022-03-18 15:05:35.816488\r\n media | 3  | vm0      |     2 | 2022-03-18 15:05:35.816488\r\n(2 rows)\r\n\r\n"
+    ],
+    [
+      3.050264,
+      "\r\n########################################################################\r\n########################################################################\r\n"
+    ],
+    [
+      3.001644,
+      "\r\n# Use the command with the family parameter: -f or --family\r\n# Supported families are 'dir', 'disk', 'tape'\r\n# A type parameter is mandatory to use the family parameter\r\n# Supported types with families are 'device', 'media' and 'media_update'\r\n"
+    ],
+    [
+      6.002969,
+      "\r\n# Use a valid family parameter whithout giving a type\r\nsudo phobos lock clean -f dir\r\n"
+    ],
+    [
+      0.203805,
+      "2022-03-18 15:05:48,298 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n2022-03-18 15:05:48,298 <ERROR> Family parameter must be specified with a type argument.: Invalid argument\r\n2022-03-18 15:05:48,298 <ERROR> Clean command failed\r\n"
+    ],
+    [
+      0.005105,
+      "########################################################################\r\n# Delete every lock of type media and family dir\r\n"
+    ],
+    [
+      0.010614,
+      "INSERT 0 4\r\n"
+    ],
+    [
+      0.013359,
+      "INSERT 0 3\r\n"
+    ],
+    [
+      0.000396,
+      "Media database :\r\npsql phobos phobos -c \"SELECT * FROM media\"\r\n"
+    ],
+    [
+      0.009092,
+      " family | model | id | adm_status | fs_type | fs_label | address_type | fs_status | stats | tags | put | get | delete \r\n--------+-------+----+------------+---------+----------+--------------+-----------+-------+------+-----+-----+--------\r\n disk   |       | 1  | locked     | POSIX   | label1   | PATH         | full      | {}    | {}   | t   | t   | t\r\n dir    |       | 2  | unlocked   | POSIX   | label2   | PATH         | empty     | {}    | {}   | t   | t   | t\r\n dir    |       | 3  | locked     | POSIX   | label3   | PATH         | blank     | {}    | {}   | t   | t   | t\r\n(3 rows)\r\n\r\n"
+    ],
+    [
+      0.000455,
+      "\r\n# Lock database before call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.00841,
+      "     type     | id | hostname | owner |         timestamp          \r\n--------------+----+----------+-------+----------------------------\r\n media        | 1  | host1    |     1 | 2022-03-18 15:05:48.320639\r\n media        | 2  | host2    |     3 | 2022-03-18 15:05:48.320639\r\n media_update | 2  | host2    |     4 | 2022-03-18 15:05:48.320639\r\n media        | 3  | vm0      |     2 | 2022-03-18 15:05:48.320639\r\n(4 rows)\r\n\r\n"
+    ],
+    [
+      0.000489,
+      "\r\nsudo phobos lock clean -t media -f dir --global --force\r\n"
+    ],
+    [
+      0.195703,
+      "2022-03-18 15:05:48,550 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n"
+    ],
+    [
+      0.013361,
+      "2022-03-18 15:05:48,554 <INFO> 2 lock(s) cleaned.\r\n2022-03-18 15:05:48,554 <INFO> Clean command executed successfully\r\n"
+    ],
+    [
+      0.00435,
+      "\r\n# Lock database after call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.009175,
+      "     type     | id | hostname | owner |         timestamp          \r\n--------------+----+----------+-------+----------------------------\r\n media        | 1  | host1    |     1 | 2022-03-18 15:05:48.320639\r\n media_update | 2  | host2    |     4 | 2022-03-18 15:05:48.320639\r\n(2 rows)\r\n\r\n"
+    ],
+    [
+      3.04942,
+      "\r\n########################################################################\r\n########################################################################\r\n"
+    ],
+    [
+      3.001509,
+      "\r\n# Use the command with the id parameter: -i or --ids\r\n\r\n# Remove element of type 'object' and id '3' on localhost\r\n"
+    ],
+    [
+      0.011133,
+      "INSERT 0 3\r\n"
+    ],
+    [
+      0.000363,
+      "\r\n# Lock database before call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.009764,
+      "     type     | id | hostname | owner |         timestamp          \r\n--------------+----+----------+-------+----------------------------\r\n object       | 1  | host1    |     1 | 2022-03-18 15:05:54.637244\r\n media_update | 3  | vm0      |     4 | 2022-03-18 15:05:54.637244\r\n object       | 3  | vm0      |     3 | 2022-03-18 15:05:54.637244\r\n(3 rows)\r\n\r\n\r\nsudo phobos lock clean -t object -i 3\r\n"
+    ],
+    [
+      0.193717,
+      "2022-03-18 15:05:54,843 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n"
+    ],
+    [
+      0.01257,
+      "2022-03-18 15:05:54,846 <INFO> 1 lock(s) cleaned.\r\n2022-03-18 15:05:54,846 <INFO> Clean command executed successfully\r\n"
+    ],
+    [
+      0.00438,
+      "\r\n# Lock database after call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.00911,
+      "     type     | id | hostname | owner |         timestamp          \r\n--------------+----+----------+-------+----------------------------\r\n object       | 1  | host1    |     1 | 2022-03-18 15:05:54.637244\r\n media_update | 3  | vm0      |     4 | 2022-03-18 15:05:54.637244\r\n(2 rows)\r\n\r\n"
+    ],
+    [
+      3.041366,
+      "\r\n########################################################################\r\n# Remove every element of type 'media_update' of id '2' or '3'\r\n"
+    ],
+    [
+      0.009684,
+      "INSERT 0 4\r\n"
+    ],
+    [
+      0.000461,
+      "\r\n# Lock database before call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.008511,
+      "     type     | id | hostname | owner |         timestamp          \r\n--------------+----+----------+-------+----------------------------\r\n media_update | 1  | host1    |     4 | 2022-03-18 15:05:57.918396\r\n media        | 2  | host2    |     3 | 2022-03-18 15:05:57.918396\r\n media_update | 2  | host2    |     4 | 2022-03-18 15:05:57.918396\r\n media_update | 3  | vm0      |     4 | 2022-03-18 15:05:57.918396\r\n(4 rows)\r\n\r\n"
+    ],
+    [
+      0.00038,
+      "\r\nsudo phobos lock clean --global --force -t media_update -i 2 3\r\n"
+    ],
+    [
+      0.193789,
+      "2022-03-18 15:05:58,123 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n"
+    ],
+    [
+      0.012322,
+      "2022-03-18 15:05:58,126 <INFO> 2 lock(s) cleaned.\r\n2022-03-18 15:05:58,127 <INFO> Clean command executed successfully\r\n"
+    ],
+    [
+      0.00457,
+      "\r\n# Lock database after call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.009013,
+      "     type     | id | hostname | owner |         timestamp          \r\n--------------+----+----------+-------+----------------------------\r\n media_update | 1  | host1    |     4 | 2022-03-18 15:05:57.918396\r\n media        | 2  | host2    |     3 | 2022-03-18 15:05:57.918396\r\n(2 rows)\r\n\r\n"
+    ],
+    [
+      3.040493,
+      "\r\n########################################################################\r\n# Clean an element with every parameter\r\n# Clean the element of type 'device', of family 'dir' and of id '2'\r\n"
+    ],
+    [
+      0.010495,
+      "INSERT 0 2\r\n"
+    ],
+    [
+      0.00227,
+      "INSERT 0 2\r\nDevice database :\r\npsql phobos phobos -c \"SELECT * FROM device\"\r\n"
+    ],
+    [
+      0.008539,
+      " family | model | id | host  | adm_status | path  \r\n--------+-------+----+-------+------------+-------\r\n disk   |       | 1  | host1 | locked     | path1\r\n dir    |       | 2  | host2 | unlocked   | path2\r\n(2 rows)\r\n\r\n"
+    ],
+    [
+      0.000456,
+      "\r\n# Lock database before call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.008444,
+      "  type  | id | hostname | owner |         timestamp          \r\n--------+----+----------+-------+----------------------------\r\n device | 1  | host1    |     2 | 2022-03-18 15:06:01.198651\r\n device | 2  | host2    |     1 | 2022-03-18 15:06:01.198651\r\n(2 rows)\r\n\r\n"
+    ],
+    [
+      0.000429,
+      "\r\nsudo phobos lock clean -t device -f dir -i 2 --global --force\r\n"
+    ],
+    [
+      0.195656,
+      "2022-03-18 15:06:01,416 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n"
+    ],
+    [
+      0.012624,
+      "2022-03-18 15:06:01,420 <INFO> 1 lock(s) cleaned.\r\n2022-03-18 15:06:01,420 <INFO> Clean command executed successfully\r\n"
+    ],
+    [
+      0.005264,
+      "\r\n# Lock database after call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.009163,
+      "  type  | id | hostname | owner |         timestamp          \r\n--------+----+----------+-------+----------------------------\r\n device | 1  | host1    |     2 | 2022-03-18 15:06:01.198651\r\n(1 row)\r\n\r\n"
+    ],
+    [
+      3.061034,
+      "\r\n########################################################################\r\n# Clean every element with id '1' \r\n"
+    ],
+    [
+      0.010806,
+      "INSERT 0 3\r\n"
+    ],
+    [
+      0.000387,
+      "\r\n# Lock database before call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.008733,
+      "  type  | id | hostname | owner |         timestamp          \r\n--------+----+----------+-------+----------------------------\r\n media  | 1  | host1    |     1 | 2022-03-18 15:06:04.513045\r\n object | 1  | host1    |     3 | 2022-03-18 15:06:04.513045\r\n media  | 2  | host2    |     3 | 2022-03-18 15:06:04.513045\r\n(3 rows)\r\n\r\n"
+    ],
+    [
+      0.000417,
+      "\r\nsudo phobos lock clean -i 1 --global --force\r\n"
+    ],
+    [
+      0.194281,
+      "2022-03-18 15:06:04,718 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n"
+    ],
+    [
+      0.011871,
+      "2022-03-18 15:06:04,721 <INFO> 2 lock(s) cleaned.\r\n2022-03-18 15:06:04,722 <INFO> Clean command executed successfully\r\n"
+    ],
+    [
+      0.004966,
+      "\r\n# Lock database after call:\r\npsql phobos phobos -c \"SELECT * FROM lock\"\r\n"
+    ],
+    [
+      0.009101,
+      " type  | id | hostname | owner |         timestamp          \r\n-------+----+----------+-------+----------------------------\r\n media | 2  | host2    |     3 | 2022-03-18 15:06:04.513045\r\n(1 row)\r\n\r\n"
+    ],
+    [
+      3.039734,
+      "\r\n"
+    ],
+    [
+      0.000324,
+      "\u001b]0;keyewaa@vm0:~\u0007[keyewaa@vm0 ~]$ "
+    ]
+  ]
+}
