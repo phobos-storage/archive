@@ -1,0 +1,149 @@
+# This demo was based on the work available in Phobos 1.95.
+# May not work for the following versions.
+
+{
+  "version": 1,
+  "width": 280,
+  "height": 70,
+  "duration": 12.085052,
+  "command": null,
+  "title": null,
+  "env": {
+    "TERM": "screen",
+    "SHELL": "/bin/bash"
+  },
+  "stdout": [
+    [
+      0.002548,
+      "  # RADOS Pools in Phobos are similar to directories. They are  both devices and medias. They are identified by their name in Ceph.\r\n  # The 'phobos pool add' command adds existent Ceph pools to the DSS.\r\n  # The optionnal arguments are:\r\n  #     --unlock to unlock the media pool we are adding\r\n  #     --tags/-T to associate tags with the pool\r\n\r\n##########################################################################################################################################\r\n"
+    ],
+    [
+      5.325828,
+      "  # On our Ceph cluster we have the following pools:\r\n\r\n  $ sudo rados lspools\r\n"
+    ],
+    [
+      0.052314,
+      "device_health_metrics\r\npho_rados\r\npho_pool\r\npho_pool1\r\npho_pool2\r\n"
+    ],
+    [
+      0.005117,
+      "\r\n\r\n  # Let's try adding the pool pho_pool to Phobos with tags\r\n\r\n  # Media database before call:\r\n$ psql phobos phobos -c \"SELECT * FROM media\"\r\n"
+    ],
+    [
+      0.009923,
+      " family | model | id | adm_status | fs_type | fs_label | address_type | fs_status | stats | tags | put | get | delete \r\n--------+-------+----+------------+---------+----------+--------------+-----------+-------+------+-----+-----+--------\r\n(0 rows)\r\n\r\n"
+    ],
+    [
+      0.000329,
+      "  # Device database after call:\r\n"
+    ],
+    [
+      0.008532,
+      " family | model | id | host | adm_status | path \r\n--------+-------+----+------+------------+------\r\n(0 rows)\r\n\r\n"
+    ],
+    [
+      0.000469,
+      "\r\n\r\n  $ sudo phobos pool add pho_pool --tags t1,t2\r\n"
+    ],
+    [
+      0.218409,
+      "2022-04-28 13:31:42,473 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n"
+    ],
+    [
+      0.026822,
+      "2022-04-28 13:31:42,500 <INFO> Will add device 'pool:pho_pool' to the database: model=(null) serial=vm0:pho_pool (unlocked)\r\n"
+    ],
+    [
+      0.012107,
+      "2022-04-28 13:31:42,503 <INFO> Added 1 pool(s) successfully\r\n"
+    ],
+    [
+      0.006345,
+      "\r\n\r\n  # Media database after call:\r\n"
+    ],
+    [
+      0.009875,
+      " family | model |    id    | adm_status | fs_type | fs_label | address_type | fs_status |                                                   stats                                                   |     tags     | put | get | delete \r\n--------+-------+----------+------------+---------+----------+--------------+-----------+-----------------------------------------------------------------------------------------------------------+--------------+-----+-----+--------\r\n pool   |       | pho_pool | locked     | RADOS   | NULL     | HASH1        | blank     | {\"nb_obj\": 0, \"last_load\": 0, \"nb_errors\": 0, \"logc_spc_used\": 0, \"phys_spc_free\": 0, \"phys_spc_used\": 0} | [\"t1\", \"t2\"] | t   | t   | t\r\n(1 row)\r\n\r\n"
+    ],
+    [
+      0.000435,
+      "  # Device database after call:\r\n$ psql phobos phobos -c \"SELECT * FROM device\"\r\n"
+    ],
+    [
+      0.00886,
+      " family | model |      id      | host | adm_status |   path   \r\n--------+-------+--------------+------+------------+----------\r\n pool   |       | vm0:pho_pool | vm0  | unlocked   | pho_pool\r\n(1 row)\r\n\r\n"
+    ],
+    [
+      1.002209,
+      "\r\n  # The media's id is the pool's name and the device's id is  '{host}:{poolname}'\r\n##########################################################################################################################################\r\n\r\n  # If we try adding the same pool to Phobos, an error is returned:\r\n\r\n  $ sudo phobos pool add pho_pool\r\n"
+    ],
+    [
+      0.219024,
+      "2022-04-28 13:31:43,759 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n"
+    ],
+    [
+      0.002034,
+      "2022-04-28 13:31:43,761 <ERROR> Query 'BEGIN;INSERT INTO media (family, model, id, adm_status, fs_type, address_type, fs_status, fs_label, stats, tags, put, get, delete) VALUES ('pool', NULL, 'pho_pool', 'locked', 'RADOS', 'HASH1', 'blank', 'NULL', '{\"nb_obj\": 0, \"logc_spc_used\": 0, \"phys_spc_used\": 0, \"phys_spc_free\": 0, \"nb_errors\": 0, \"last_load\": 0}', '[]', TRUE, TRUE, TRUE);' failed: duplicate key value violates unique constraint \"media_pkey\" (23505): File exists\r\n2022-04-28 13:31:43,761 <INFO> Attempting to rollback after transaction failure\r\n"
+    ],
+    [
+      0.009176,
+      "2022-04-28 13:31:43,761 <ERROR> Cannot issue set request (File exists)\r\n2022-04-28 13:31:43,762 <INFO> Added 0 pool(s) successfully\r\n2022-04-28 13:31:43,762 <ERROR> Failed to add 1/1 pools\r\n"
+    ],
+    [
+      0.00678,
+      "\r\n\r\n  # If we try to add a pool that does not exist, an error is returned\r\n\r\n  $ sudo phobos pool add foo\r\n"
+    ],
+    [
+      0.218043,
+      "2022-04-28 13:31:43,995 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n"
+    ],
+    [
+      0.024472,
+      "2022-04-28 13:31:44,020 <ERROR> Cannot access pool 'foo': No such device\r\n"
+    ],
+    [
+      0.003051,
+      "2022-04-28 13:31:44,022 <ERROR> The pool 'foo' does not exist : No such device\r\n2022-04-28 13:31:44,022 <ERROR> Failed to query device 'foo': No such device\r\n2022-04-28 13:31:44,023 <ERROR> Failed to add device(s) '['foo']' (No such device)\r\n"
+    ],
+    [
+      0.010659,
+      "2022-04-28 13:31:44,025 <INFO> Added 0 pool(s) successfully\r\n2022-04-28 13:31:44,025 <ERROR> Failed to add 1/1 pools\r\n"
+    ],
+    [
+      0.007372,
+      "\r\n\r\n  # If we try adding 2 valid pools and one invalid pool at once,  the valid pools are added and an error is thrown for the last\r\n\r\n  $ sudo phobos pool add pho_pool1 foo pho_pool2\r\n"
+    ],
+    [
+      0.218403,
+      "2022-04-28 13:31:44,259 <INFO> Cannot contact 'phobosd', but not required: will continue\r\n"
+    ],
+    [
+      0.026391,
+      "2022-04-28 13:31:44,285 <INFO> Will add device 'pool:pho_pool1' to the database: model=(null) serial=vm0:pho_pool1 (unlocked)\r\n"
+    ],
+    [
+      0.022256,
+      "2022-04-28 13:31:44,308 <ERROR> Cannot access pool 'foo': No such device\r\n"
+    ],
+    [
+      0.002546,
+      "2022-04-28 13:31:44,310 <ERROR> The pool 'foo' does not exist : No such device\r\n2022-04-28 13:31:44,310 <ERROR> Failed to query device 'foo': No such device\r\n2022-04-28 13:31:44,310 <ERROR> Failed to add device(s) '['foo']' (No such device)\r\n"
+    ],
+    [
+      0.022221,
+      "2022-04-28 13:31:44,332 <INFO> Will add device 'pool:pho_pool2' to the database: model=(null) serial=vm0:pho_pool2 (unlocked)\r\n"
+    ],
+    [
+      0.009791,
+      "2022-04-28 13:31:44,333 <INFO> Added 2 pool(s) successfully\r\n2022-04-28 13:31:44,334 <ERROR> Failed to add 1/3 pools\r\n"
+    ],
+    [
+      0.007413,
+      "\r\n"
+    ],
+    [
+      2.885276,
+      "\u001bkkeyewaa@vm0:~\u001b\\[keyewaa@vm0 ~]$ "
+    ]
+  ]
+}
